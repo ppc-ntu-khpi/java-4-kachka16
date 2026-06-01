@@ -2,26 +2,36 @@ package domain;
 
 public class Animal {
 
-    protected String name;
-
-    protected int weight;
+    private String name;
+    public int weight;
 
     public Animal() {
         name="generic animal";
-        weight=25;
+        weight=10;
     }
-
+    public Animal(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+    public String getName(){
+        return name;
+    }
     public void eat() {
-        System.out.println("Animal eating...");
+        System.out.println(name + " is eating food");
     }
 
-    public void speak() {
-        System.out.println("Animal speaking...");
+    public void makeSound() {
+        System.out.println(name + " is making sounds");
     }
-
+     public void move() {
+        System.out.println(name + " is moving");
+    }
+    public void sleep() {
+        System.out.println(name + " is sleeping");
+    }
     @Override
     public String toString() {
-        return "My animal:" + "\nName:\t" + name + "\nWeight:\t" + weight+" kg";
+        return "THE ANIMAL" + "\nName:\t" + name + "\nWeight:\t" + weight+" kg";
     }
 
  
