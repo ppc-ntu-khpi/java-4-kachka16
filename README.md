@@ -1,4 +1,5 @@
-Для прикладу я взяла єнота для виконання практичної роботи
+Для прикладу я взяла єнота для виконання практичної роботи🦝
+
 ![task1](https://github.com/ppc-ntu-khpi/java-4-kachka16/blob/master/images/raccoon.jpg?raw=true)
 ![task2](https://github.com/ppc-ntu-khpi/java-4-kachka16/blob/master/images/Main.jpg?raw=true)
 # Звіт о виконання роботи
