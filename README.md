@@ -1,28 +1,134 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=24003944)
-# Практична робота "Реалізація успадкування"
-Цей репозиторій містить приклад виконання та інструкції для виконання практичної роботи з наслідування в JAVA. 
+![task1](https://github.com/ppc-ntu-khpi/java-4-kachka16/blob/master/images/raccoon.jpg?raw=true)
+![task2](https://github.com/ppc-ntu-khpi/java-4-kachka16/blob/master/images/Main.jpg?raw=true)
+# Звіт о виконання роботи
 
-Для прикладу я змоделював **звичайнісінького кота**😉
+## Завдання 1
 
-<img src="https://github.com/ppc-ntu-khpi/Inheritance-Starter/blob/master/images/cat.jpg" width="100%"/>
-<img src="https://github.com/ppc-ntu-khpi/Inheritance-Starter/blob/master/images/Cat-Diagram.png" width="100%"/>
+> З допомогою StarUML створіть діаграму класів для обраної тварини. Згенеруйте каркасний код на основі діаграми. Допрацюйте код - всі методи мають виводити на екран повідомлення про те, що робить тварина! Створіть тестовий клас, в методі main якого створіть об'єкт класу тварини та викличіть його методи
 
-## В рамках практичної роботи ви маєте зробити наступне:
-1. подумайте, які риси та поведінка притаманні всім без винятку тваринам 
-2. оберіть будь-яку тварину (не стримуйте свою фантазію😉)
-2. з допомогою **[StarUML](https://staruml.io/)** створіть діаграму класів для обраної тварини. Ви маєте отримати шось подібне до прикладу з цього репозиторію.
-3. згенеруйте каркасний код на основі діаграми
-4. допрацюйте код - *всі методи мають виводити на екран повідомлення про те, що робить тварина!*
-5. створіть тестовий клас, в методі **main** якого створіть об'єкт класу тварини та викличіть його методи
-3. завантажте ваш код до до теки **src** вашого репозиторію (замінивши код прикладу). Експортовану (в PNG) діаграму завантажте в теку **images** та додайте в **Readme** (не забудьте в ньому описати що за тварину ви обрали)
-4. здайте завдання. **УВАГА! Не забудьте, здаючи завдання через Google Classroom, вказати посилання на Ваш репозиторій!**
+### Animal.java
+``` java
+package domain;
 
-## Відеодемонстрація виконання практичної
+public class Animal {
 
-<p align="center">
-<a href="https://www.youtube.com/watch?v=SFSC1omkE8Q&feature=youtu.be" target="_blank"><img src="https://img.youtube.com/vi/SFSC1omkE8Q/0.jpg"/></a>
-</p>
+    private String name;
+    public int weight;
 
-Не забувайте, що ви можете обговорювати завдання в девелоперському мессенджері **Gitter** - у відповідній [чат-кімнаті](https://gitter.im/PPC-SE-2020/OOP?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
+    public Animal() {
+        name="generic animal";
+        weight=10;
+    }
+    public Animal(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+    public String getName(){
+        return name;
+    }
+    public void eat() {
+        System.out.println(name + " is eating food");
+    }
 
-[![Gitter](https://badges.gitter.im/PPC-SE-2020/OOP.svg)](https://gitter.im/PPC-SE-2020/OOP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+    public void makeSound() {
+        System.out.println(name + " is making sounds");
+    }
+     public void move() {
+        System.out.println(name + " is moving");
+    }
+    public void sleep() {
+        System.out.println(name + " is sleeping");
+    }
+    @Override
+    public String toString() {
+        return "THE ANIMAL" + "\nName:\t" + name + "\nWeight:\t" + weight+" kg";
+    }
+}
+
+```
+
+### Raccoon.java
+``` java
+package domain;
+
+public class Raccoon extends Predator {
+
+    private String habitat;
+
+    public Raccoon(String name, int weight, String habitat) {
+        super(name, weight);
+        this.habitat = habitat;
+    }
+
+    public Raccoon() {
+        this("Rocky",6,"forest");
+    }
+
+    public Raccoon(String name) {
+        this(name,6,"forest");
+    }
+
+    @Override
+    public void hunt() {
+        System.out.println(getName() + " is hunting for insects");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"\nHabitat:\t"+this.habitat+"\n\nThis is raccoon!";
+    }
+
+    public void makeSound() {
+        System.out.println(getName() + " is making sounds");
+    }
+
+    public void climb() {
+        System.out.println(getName() + " is climbing a tree");
+    }
+}
+```
+
+### Predator.java
+``` java
+package domain;
+
+public class Predator extends Animal {
+    public Predator() {
+        super();
+    }
+    public Predator(String name, int weight) {
+        super(name, weight);
+    }
+
+    public void hunt() {
+        System.out.println(getName() + " is hunting");
+    }
+}
+```
+
+### TestAnimal.java
+``` java
+package test;
+
+import domain.Raccoon;
+
+public class TestAnimal {
+
+    public static void main(String[] args) {
+        System.out.println("===>Testing the created UML diagram<===");
+        Raccoon raccoon = new Raccoon("Rocky", 6, "forest");
+        raccoon.move(); 
+        raccoon.makeSound();  
+        raccoon.hunt();  
+        raccoon.eat(); 
+        raccoon.climb(); 
+        System.out.println("-----------------------------------------");
+        System.out.println(raccoon);
+    }
+}
+
+```
+
+## Результат
+
+![task3](https://github.com/ppc-ntu-khpi/java-4-kachka16/blob/master/images/result.png?raw=true)
